@@ -1,4 +1,4 @@
-import 'custom_exception.dart';
+import 'package:petology_web/Shared/Network/customException.dart';
 
 class CustomError {
   CustomStatusCodeErrorType type;

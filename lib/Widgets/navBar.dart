@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomNavBar extends StatefulWidget {
-  CustomNavBar({Key? key, required this.isTransparent}) : super(key: key);
+  CustomNavBar({
+    Key? key,
+    required this.isTransparent,
+  }) : super(
+          key: key,
+        );
 
   bool isTransparent;
 
@@ -11,34 +16,44 @@ class CustomNavBar extends StatefulWidget {
 }
 
 class _CustomNavBarState extends State<CustomNavBar> {
-  final List _isHovering = [false, false, false, false];
+  final List _isHovering = [
+    false,
+    false,
+    false,
+    false,
+  ];
 
   @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+  Widget build(
+    BuildContext context,
+  ) {
+    Size screenSize = MediaQuery.of(
+      context,
+    ).size;
     return Container(
       width: screenSize.width,
       height: 70,
       decoration: !widget.isTransparent
           ? const BoxDecoration(
               gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromRGBO(
-                  103,
-                  71,
-                  57,
-                  1,
-                ),
-                Color.fromRGBO(
-                  24,
-                  7,
-                  1,
-                  1,
-                ),
-              ],
-            ))
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color.fromRGBO(
+                    103,
+                    71,
+                    57,
+                    1,
+                  ),
+                  Color.fromRGBO(
+                    24,
+                    7,
+                    1,
+                    1,
+                  ),
+                ],
+              ),
+            )
           : null,
       child: Padding(
         padding: const EdgeInsets.all(
@@ -55,7 +70,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onHover: (value) {
+                    onHover: (
+                      value,
+                    ) {
                       _isHovering[0] = value;
                     },
                     onTap: () {},
@@ -94,7 +111,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     width: screenSize.width / 20,
                   ),
                   InkWell(
-                    onHover: (value) {
+                    onHover: (
+                      value,
+                    ) {
                       (value) {
                         _isHovering[1] = value;
                       };
@@ -136,7 +155,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
                   ),
                   InkWell(
                     onHover: (value) {
-                      (value) {
+                      (
+                        value,
+                      ) {
                         _isHovering[2] = value;
                       };
                     },
@@ -150,7 +171,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
                             color: _isHovering[2] ? Colors.white : Colors.white,
                           ),
                         ),
-                        const SizedBox(height: 5),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Visibility(
                           maintainAnimation: true,
                           maintainState: true,
@@ -174,7 +197,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     width: screenSize.width / 20,
                   ),
                   InkWell(
-                    onHover: (value) {
+                    onHover: (
+                      value,
+                    ) {
                       (value) {
                         _isHovering[3] = value;
                       };
@@ -207,7 +232,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                               1,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

@@ -1,25 +1,44 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:petology_web/Bloc/Login_Cubit/login_cubit.dart';
-import 'package:petology_web/Bloc/Login_Cubit/login_states.dart';
+import 'package:petology_web/Bloc/loginCubit/loginCubit.dart';
+import 'package:petology_web/Bloc/loginCubit/loginStates.dart';
 import 'package:petology_web/Constant/constant.dart';
 import 'package:petology_web/Widgets/footer.dart';
 import 'package:petology_web/Widgets/navBar.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     TextEditingController mailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
     return BlocProvider(
-      create: (BuildContext context) => LoginCubit(),
+      create: (
+        BuildContext context,
+      ) =>
+          LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
-        listener: (BuildContext context, state) {},
-        builder: (BuildContext context, Object? state) {
-          LoginCubit myCubit = LoginCubit.get(context);
+        listener: (
+          BuildContext context,
+          state,
+        ) {},
+        builder: (
+          BuildContext context,
+          Object? state,
+        ) {
+          LoginCubit myCubit = LoginCubit.get(
+            context,
+          );
           return Scaffold(
             body: SingleChildScrollView(
               child: Column(
@@ -206,7 +225,10 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget customTextField(String hint, TextEditingController controller) {
+  Widget customTextField(
+    String hint,
+    TextEditingController controller,
+  ) {
     return Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
@@ -273,7 +295,9 @@ class LoginScreen extends StatelessWidget {
             child: Card(
               color: Colors.yellow,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(
+                  25,
+                ),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(
@@ -295,7 +319,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

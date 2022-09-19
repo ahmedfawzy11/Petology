@@ -4,7 +4,11 @@ import 'package:petology_web/Widgets/navBar.dart';
 
 // ignore: must_be_immutable
 class HelpScreen extends StatefulWidget {
-  const HelpScreen({Key? key}) : super(key: key);
+  const HelpScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<HelpScreen> createState() => _HelpScreenState();
@@ -25,8 +29,12 @@ class _HelpScreenState extends State<HelpScreen> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+  Widget build(
+    BuildContext context,
+  ) {
+    var screenSize = MediaQuery.of(
+      context,
+    ).size;
     return MaterialApp(
       home: Scaffold(
         body: SingleChildScrollView(
@@ -226,10 +234,18 @@ class _HelpScreenState extends State<HelpScreen> {
     );
   }
 
-  Widget customTextField(String hint, TextEditingController controller,
-      {Icon icon = const Icon(Icons.location_on), bool useIcon = false}) {
+  Widget customTextField(
+    String hint,
+    TextEditingController controller, {
+    Icon icon = const Icon(
+      Icons.location_on,
+    ),
+    bool useIcon = false,
+  }) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(
+        8.0,
+      ),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
@@ -245,12 +261,13 @@ class _HelpScreenState extends State<HelpScreen> {
           child: TextField(
             onChanged: (value) {},
             decoration: InputDecoration(
-                suffixIcon: useIcon ? icon : null,
-                hintStyle: const TextStyle(
-                  fontSize: 13,
-                ),
-                hintText: hint,
-                border: InputBorder.none),
+              suffixIcon: useIcon ? icon : null,
+              hintStyle: const TextStyle(
+                fontSize: 13,
+              ),
+              hintText: hint,
+              border: InputBorder.none,
+            ),
             controller: controller,
           ),
         ),
@@ -258,9 +275,13 @@ class _HelpScreenState extends State<HelpScreen> {
     );
   }
 
-  Widget customDropDown(String hint) {
+  Widget customDropDown(
+    String hint,
+  ) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(
+        8.0,
+      ),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
@@ -281,14 +302,18 @@ class _HelpScreenState extends State<HelpScreen> {
               ),
             ),
             isExpanded: true,
-            onChanged: (String? newValue) {
+            onChanged: (
+              String? newValue,
+            ) {
               dropdownvalue = newValue;
             },
             items: items.map(
               (items) {
                 return DropdownMenuItem(
                   value: items,
-                  child: Text(items),
+                  child: Text(
+                    items,
+                  ),
                 );
               },
             ).toList(),

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -5,15 +7,24 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:petology_web/Bloc/SignUp_Cubit/sign_up_states.dart';
-import 'package:petology_web/Screens/home_screen.dart';
-import 'package:petology_web/Shared/Network/dio_helper.dart';
+import 'package:petology_web/Bloc/signUpCubit/signUpStates.dart';
+import 'package:petology_web/Screens/homeScreen.dart';
+import 'package:petology_web/Shared/Network/dioHelper.dart';
 
 class SignUpCubit extends Cubit<SignUpStates> {
   SignUpCubit() : super(SignUpInitialState());
-  static SignUpCubit get(context) => BlocProvider.of(context);
+  static SignUpCubit get(
+    context,
+  ) =>
+      BlocProvider.of(
+        context,
+      );
 
-  Future<dynamic> registerUser(json, String endpoint, context) async {
+  Future<dynamic> registerUser(
+    json,
+    String endpoint,
+    context,
+  ) async {
     DioHelper.dio
         .post(
       endpoint,
@@ -22,7 +33,9 @@ class SignUpCubit extends Cubit<SignUpStates> {
           HttpHeaders.contentTypeHeader: "application/json",
         },
       ),
-      data: jsonEncode(json),
+      data: jsonEncode(
+        json,
+      ),
     )
         .then(
       (value) {
@@ -41,7 +54,10 @@ class SignUpCubit extends Cubit<SignUpStates> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen(),
+              builder: (
+                BuildContext context,
+              ) =>
+                  const HomeScreen(),
             ),
           );
         } else {

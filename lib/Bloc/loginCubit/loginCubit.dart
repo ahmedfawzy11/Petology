@@ -5,11 +5,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:petology_web/Bloc/loginCubit/loginStates.dart';
 import 'package:petology_web/Constant/constant.dart';
-import 'package:petology_web/Screens/home_screen.dart';
-import 'package:petology_web/Shared/Network/dio_helper.dart';
-
-import 'login_states.dart';
+import 'package:petology_web/Screens/homeScreen.dart';
+import 'package:petology_web/Shared/Network/dioHelper.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit()
@@ -17,9 +16,18 @@ class LoginCubit extends Cubit<LoginStates> {
           LoginInitialState(),
         );
 
-  static LoginCubit get(context) => BlocProvider.of(context);
+  static LoginCubit get(
+    context,
+  ) =>
+      BlocProvider.of(
+        context,
+      );
 
-  Future<dynamic> loginUser(json, String endpoint, context) async {
+  Future<dynamic> loginUser(
+    json,
+    String endpoint,
+    context,
+  ) async {
     Response response = DioHelper.dio
         .post(
       endpoint,
@@ -28,7 +36,9 @@ class LoginCubit extends Cubit<LoginStates> {
           HttpHeaders.contentTypeHeader: "application/json",
         },
       ),
-      data: jsonEncode(json),
+      data: jsonEncode(
+        json,
+      ),
     )
         .then(
       (value) {
@@ -39,11 +49,16 @@ class LoginCubit extends Cubit<LoginStates> {
             );
           }
           TOKEN = value.data['accessToken'];
-          emit(UserLoginSuccess());
+          emit(
+            UserLoginSuccess(),
+          );
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen(),
+              builder: (
+                BuildContext context,
+              ) =>
+                  const HomeScreen(),
             ),
           );
         } else {
@@ -51,7 +66,9 @@ class LoginCubit extends Cubit<LoginStates> {
             UserLoginFailed(),
           );
           if (kDebugMode) {
-            print("Error");
+            print(
+              "Error",
+            );
           }
         }
       },

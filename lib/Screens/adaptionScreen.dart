@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:petology_web/Models/category_model.dart';
+import 'package:petology_web/Models/categoryModel.dart';
 import 'package:petology_web/Widgets/footer.dart';
 import 'package:petology_web/Widgets/navBar.dart';
 
 // ignore: must_be_immutable
 class AdaptionScreen extends StatefulWidget {
-  const AdaptionScreen({Key? key}) : super(key: key);
+  const AdaptionScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<AdaptionScreen> createState() => _AdaptionScreenState();
@@ -24,8 +28,12 @@ class _AdaptionScreenState extends State<AdaptionScreen> {
   List<Widget> pets = [];
 
   @override
-  Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+  Widget build(
+    BuildContext context,
+  ) {
+    var screenSize = MediaQuery.of(
+      context,
+    ).size;
     pets = [
       petCard(),
       petCard(),
@@ -161,7 +169,10 @@ class _AdaptionScreenState extends State<AdaptionScreen> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemCount: pets.length >= 3 ? 3 : pets.length,
-                              itemBuilder: (context, index) {
+                              itemBuilder: (
+                                context,
+                                index,
+                              ) {
                                 return petCard();
                               },
                             ),
@@ -173,7 +184,10 @@ class _AdaptionScreenState extends State<AdaptionScreen> {
                               scrollDirection: Axis.horizontal,
                               itemCount:
                                   pets.length - 3 > 0 ? pets.length - 3 : 0,
-                              itemBuilder: (context, index) {
+                              itemBuilder: (
+                                context,
+                                index,
+                              ) {
                                 return petCard();
                               },
                             ),
@@ -211,7 +225,10 @@ class _AdaptionScreenState extends State<AdaptionScreen> {
 
   Widget petCard() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 50,
+        vertical: 20,
+      ),
       width: 300,
       decoration: BoxDecoration(
         color: const Color(
@@ -273,7 +290,10 @@ class _AdaptionScreenState extends State<AdaptionScreen> {
     );
   }
 
-  Widget filterSection(String name, double width) {
+  Widget filterSection(
+    String name,
+    double width,
+  ) {
     return Container(
       width: width,
       child: Padding(
@@ -311,14 +331,18 @@ class _AdaptionScreenState extends State<AdaptionScreen> {
         child: DropdownButton(
           underline: const SizedBox(),
           isExpanded: true,
-          onChanged: (String? newValue) {
+          onChanged: (
+            String? newValue,
+          ) {
             dropdownvalue = newValue;
           },
           items: items.map(
             (items) {
               return DropdownMenuItem(
                 value: items,
-                child: Text(items),
+                child: Text(
+                  items,
+                ),
               );
             },
           ).toList(),

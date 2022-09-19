@@ -15,8 +15,8 @@ dependencies:
   cupertino_icons: ^1.0.5
   dio: ^4.0.6
   conditional_builder_null_safety: ^0.0.6
-  flutter_bloc: ^8.0.1
-  bloc: ^8.0.3
+  flutter_bloc: ^8.1.1
+  bloc: ^8.1.0
   carousel_slider: ^4.1.1
   url_launcher: ^6.1.5
 
@@ -33,7 +33,7 @@ flutter:
   uses-material-design: true
 
   assets:
-     - assets/images/
+     - assets/
 
 
 fonts:

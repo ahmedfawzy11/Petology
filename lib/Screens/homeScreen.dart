@@ -2,13 +2,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:petology_web/Bloc/Home_Cubit/home_cubit.dart';
-import 'package:petology_web/Bloc/Home_Cubit/home_states.dart';
-import 'package:petology_web/Models/category_model.dart';
-import 'package:petology_web/Widgets/custom_radio.dart';
+import 'package:petology_web/Bloc/homeCubit/homeCubit.dart';
+import 'package:petology_web/Bloc/homeCubit/homeStates.dart';
+import 'package:petology_web/Models/categoryModel.dart';
+import 'package:petology_web/Widgets/customRadio.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,7 +20,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return MaterialApp(
       title: 'Explore',
       theme: ThemeData(
@@ -29,18 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
-  final List _isHovering = [false, false, false, false];
+  final List _isHovering = [
+    false,
+    false,
+    false,
+    false,
+  ];
   List pets = [];
 
   CarouselController carouselController = CarouselController();
 
   ScrollController scrollController = ScrollController();
 
-  HomePage({super.key});
+  HomePage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(
+      context,
+    ).size;
     // ignore: non_constant_identifier_names
     List<Profile> Profiles = [];
     Profiles.add(
@@ -51,27 +66,60 @@ class HomePage extends StatelessWidget {
       ),
     );
     Profiles.add(
-      Profile("Cats", "ic_dog.png", false),
+      Profile(
+        "Cats",
+        "ic_dog.png",
+        false,
+      ),
     );
     return BlocProvider(
       lazy: false,
-      create: (BuildContext context) => HomeCubit()
-        ..getHomeFirstSectionsData(context)
-        ..getHomeSecondSectionsData(context)
-        ..getHomePetsData(context)
-        ..getHomeFooterData(context),
+      create: (
+        BuildContext context,
+      ) =>
+          HomeCubit()
+            ..getHomeFirstSectionsData(
+              context,
+            )
+            ..getHomeSecondSectionsData(
+              context,
+            )
+            ..getHomePetsData(
+              context,
+            )
+            ..getHomeFooterData(
+              context,
+            ),
       child: BlocConsumer<HomeCubit, HomeStates>(
-        listener: (BuildContext context, state) {},
-        builder: (BuildContext context, Object? state) {
-          HomeCubit myCubit = HomeCubit.get(context);
+        listener: (
+          BuildContext context,
+          state,
+        ) {},
+        builder: (
+          BuildContext context,
+          Object? state,
+        ) {
+          HomeCubit myCubit = HomeCubit.get(
+            context,
+          );
           return Scaffold(
             extendBodyBehindAppBar: true,
             appBar: PreferredSize(
-              preferredSize: Size(screenSize.width, 1000),
+              preferredSize: Size(
+                screenSize.width,
+                1000,
+              ),
               child: Container(
-                color: const Color.fromRGBO(0, 0, 0, 0),
+                color: const Color.fromRGBO(
+                  0,
+                  0,
+                  0,
+                  0,
+                ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(
+                    20,
+                  ),
                   child: Row(
                     children: [
                       const Text(
@@ -92,7 +140,9 @@ class HomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
-                              onHover: (value) {
+                              onHover: (
+                                value,
+                              ) {
                                 value
                                     ? _isHovering[0] = true
                                     : _isHovering[0] = false;
@@ -294,26 +344,27 @@ class HomePage extends StatelessWidget {
                               width: 100,
                               height: 30,
                               child: TextButton(
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          20.0,
-                                        ),
-                                        side: const BorderSide(
-                                          color: Colors.white,
-                                        ),
+                                onPressed: () {},
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        20.0,
+                                      ),
+                                      side: const BorderSide(
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ),
-                                  child: const Text(
-                                    "Login",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  )),
+                                ),
+                                child: const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -328,7 +379,10 @@ class HomePage extends StatelessWidget {
                 condition: myCubit.firstSectionData != null &&
                     myCubit.secondSectionData != null &&
                     myCubit.footerData != null,
-                builder: (context) => Column(
+                builder: (
+                  context,
+                ) =>
+                    Column(
                   children: [
                     Stack(
                       children: [
@@ -337,24 +391,25 @@ class HomePage extends StatelessWidget {
                           width: screenSize.width,
                           child: Container(
                             decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color.fromRGBO(
-                                  103,
-                                  71,
-                                  57,
-                                  1,
-                                ),
-                                Color.fromRGBO(
-                                  24,
-                                  7,
-                                  1,
-                                  1,
-                                ),
-                              ],
-                            )),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color.fromRGBO(
+                                    103,
+                                    71,
+                                    57,
+                                    1,
+                                  ),
+                                  Color.fromRGBO(
+                                    24,
+                                    7,
+                                    1,
+                                    1,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                         Row(
@@ -503,7 +558,11 @@ class HomePage extends StatelessWidget {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 50),
+                                              0,
+                                              0,
+                                              0,
+                                              50,
+                                            ),
                                             child: SizedBox(
                                               width: 500,
                                               height: 500,
@@ -720,76 +779,81 @@ class HomePage extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 20.0,
-                                  horizontal: 20,
-                                ),
-                                child: Row(
-                                  children: [
-                                    InkWell(
-                                      child: Card(
-                                        color: Colors.black,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            100,
-                                          ),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20.0,
+                                horizontal: 20,
+                              ),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    child: Card(
+                                      color: Colors.black,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          100,
                                         ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(
-                                            8.0,
-                                          ),
-                                          child: Icon(
-                                            Icons.arrow_back,
-                                            color: Colors.white,
-                                          ),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(
+                                          8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_back,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: CarouselSlider.builder(
-                                        itemBuilder:
-                                            (context, index, realIndex) {
-                                          int first = index * 3;
-                                          int second = first + 1;
-                                          int third = second + 1;
-                                          return Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children:
-                                                [first, second, third].map((e) {
-                                              return petCard(e);
-                                            }).toList(),
-                                          );
-                                        },
-                                        itemCount: 3,
-                                        options: CarouselOptions(
-                                          autoPlay: false,
-                                          aspectRatio: 3,
-                                        ),
-                                        carouselController: carouselController,
+                                  ),
+                                  Expanded(
+                                    child: CarouselSlider.builder(
+                                      itemBuilder: (
+                                        context,
+                                        index,
+                                        realIndex,
+                                      ) {
+                                        int first = index * 3;
+                                        int second = first + 1;
+                                        int third = second + 1;
+                                        return Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [first, second, third].map((
+                                            e,
+                                          ) {
+                                            return petCard(e);
+                                          }).toList(),
+                                        );
+                                      },
+                                      itemCount: 3,
+                                      options: CarouselOptions(
+                                        autoPlay: false,
+                                        aspectRatio: 3,
                                       ),
+                                      carouselController: carouselController,
                                     ),
-                                    InkWell(
-                                      child: Card(
-                                        color: Colors.black,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            100,
-                                          ),
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(
-                                            8.0,
-                                          ),
-                                          child: Icon(
-                                            Icons.arrow_forward,
-                                            color: Colors.white,
-                                          ),
+                                  ),
+                                  InkWell(
+                                    child: Card(
+                                      color: Colors.black,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          100,
                                         ),
                                       ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(
+                                          8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                )),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                           Container(
                             height: 75,
@@ -840,24 +904,25 @@ class HomePage extends StatelessWidget {
                       height: 300,
                       width: screenSize.width,
                       decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(
-                            103,
-                            71,
-                            57,
-                            1,
-                          ),
-                          Color.fromRGBO(
-                            24,
-                            7,
-                            1,
-                            1,
-                          ),
-                        ],
-                      )),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(
+                              103,
+                              71,
+                              57,
+                              1,
+                            ),
+                            Color.fromRGBO(
+                              24,
+                              7,
+                              1,
+                              1,
+                            ),
+                          ],
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(
                           20.0,
@@ -956,7 +1021,7 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                             Column(
@@ -1144,7 +1209,7 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                             Column(
@@ -1160,7 +1225,10 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                fallback: (context) => const Center(
+                fallback: (
+                  context,
+                ) =>
+                    const Center(
                   child: Text(
                     'No Data',
                   ),
@@ -1173,7 +1241,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget petCard(int index) {
+  Widget petCard(
+    int index,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15.0,
@@ -1195,7 +1265,9 @@ class HomePage extends StatelessWidget {
               "dog.png",
               height: 200,
             ),
-            Text("Pet $index"),
+            Text(
+              "Pet $index",
+            ),
             GestureDetector(
               onTap: () {},
               child: Container(
@@ -1222,7 +1294,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget categoryCard(String categoryName, String imageName) {
+  Widget categoryCard(
+    String categoryName,
+    String imageName,
+  ) {
     return SizedBox(
       height: 200,
       width: 150,

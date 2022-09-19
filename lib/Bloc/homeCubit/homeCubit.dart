@@ -4,23 +4,33 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:petology_web/Bloc/Home_Cubit/home_states.dart';
+import 'package:petology_web/Bloc/homeCubit/homeStates.dart';
 import 'package:petology_web/Constant/constant.dart';
-import 'package:petology_web/Models/category_model.dart';
-import 'package:petology_web/Models/home_model.dart';
-import 'package:petology_web/Shared/Network/dio_helper.dart';
+import 'package:petology_web/Models/categoryModel.dart';
+import 'package:petology_web/Models/homeModel.dart';
+import 'package:petology_web/Shared/Network/dioHelper.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
-  HomeCubit() : super(AppInitialState());
+  HomeCubit()
+      : super(
+          AppInitialState(),
+        );
 
-  static HomeCubit get(context) => BlocProvider.of(context);
+  static HomeCubit get(
+    context,
+  ) =>
+      BlocProvider.of(
+        context,
+      );
   List<Profile> profiles = [];
   List<PetsNeeds> listOfPets = [];
   Footer? footerData;
   FirstSection? firstSectionData;
   SecondSection? secondSectionData;
 
-  Future<dynamic> getHomeFirstSectionsData(context) async {
+  Future<dynamic> getHomeFirstSectionsData(
+    context,
+  ) async {
     DioHelper.dio
         .get(
       FIRST_SECTION_ENDPOINT,
@@ -31,10 +41,14 @@ class HomeCubit extends Cubit<HomeStates> {
       ),
     )
         .then(
-      (value) {
+      (
+        value,
+      ) {
         if (value.statusCode == 200) {
           if (kDebugMode) {
-            print("success in first section");
+            print(
+              "success in first section",
+            );
           }
           firstSectionData = FirstSection(
             value.data['title'],
@@ -58,7 +72,9 @@ class HomeCubit extends Cubit<HomeStates> {
     );
   }
 
-  Future<dynamic> getHomeSecondSectionsData(context) async {
+  Future<dynamic> getHomeSecondSectionsData(
+    context,
+  ) async {
     DioHelper.dio
         .get(
       SECOND_SECTION_ENDPOINT,
@@ -92,8 +108,10 @@ class HomeCubit extends Cubit<HomeStates> {
     );
   }
 
-  Future<dynamic> getHomePetsData(context) async {
-    var listOfData;
+  Future<dynamic> getHomePetsData(
+    context,
+  ) async {
+    PetsNeeds listOfData;
     DioHelper.dio
         .get(
       PETS_NEED_ENDPOINT,
@@ -104,23 +122,26 @@ class HomeCubit extends Cubit<HomeStates> {
       ),
     )
         .then(
-      (value) {
+      (
+        value,
+      ) {
         if (value.statusCode == 200) {
           if (kDebugMode) {
             print(
               "Success in pets api",
             );
           }
-          listOfData = PetsNeeds.fromJson(
-              jsonDecode(value.data) as Map<String, dynamic>);
+          listOfData = PetsNeeds.fromJson(jsonDecode(
+            value.data,
+          ) as Map<String, dynamic>);
 
-          for (int i = 0; i < listOfData!.length; i++) {
-            listOfPets.add(
-              PetsNeeds(
-                listOfData![i]["imageUrl"],
-                listOfData![i]["title"],
-              ),
-            );
+          for (int i = 0; i < listOfData.length; i++) {
+            // listOfPets.add(
+            //   // PetsNeeds(
+            //   //   listOfData[i]["imageUrl"],
+            //   //   listOfData[i]["title"],
+            //   // ),
+            // );
             if (kDebugMode) {
               print(
                 "o",
@@ -138,7 +159,9 @@ class HomeCubit extends Cubit<HomeStates> {
     );
   }
 
-  Future<dynamic> getHomeFooterData(context) async {
+  Future<dynamic> getHomeFooterData(
+    context,
+  ) async {
     DioHelper.dio
         .get(
       Footer_ENDPOINT,

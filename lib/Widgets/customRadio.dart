@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:petology_web/Models/category_model.dart';
+import 'package:petology_web/Models/categoryModel.dart';
 
 // ignore: must_be_immutable
 class CustomRadio extends StatefulWidget {
   final Profile _profile;
 
-  const CustomRadio(this._profile, {super.key});
+  const CustomRadio(
+    this._profile, {
+    super.key,
+  });
 
   @override
   State<CustomRadio> createState() => _CustomRadioState();
@@ -13,7 +16,9 @@ class CustomRadio extends StatefulWidget {
 
 class _CustomRadioState extends State<CustomRadio> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Card(
       color: const Color.fromRGBO(
         255,

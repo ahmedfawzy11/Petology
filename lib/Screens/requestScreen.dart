@@ -1,9 +1,15 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:petology_web/Widgets/footer.dart';
 
 // ignore: must_be_immutable
 class RequestScreen extends StatefulWidget {
-  const RequestScreen({Key? key}) : super(key: key);
+  const RequestScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<RequestScreen> createState() => _RequestScreenState();
@@ -29,14 +35,25 @@ class _RequestScreenState extends State<RequestScreen> {
     'Toto',
   ];
 
-  final List _isHovering = [false, false, false, false];
+  final List _isHovering = [
+    false,
+    false,
+    false,
+    false,
+  ];
 
   @override
-  Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+  Widget build(
+    BuildContext context,
+  ) {
+    var screenSize = MediaQuery.of(
+      context,
+    ).size;
     return MaterialApp(
       home: Scaffold(
-        appBar: navBar(screenSize),
+        appBar: navBar(
+          screenSize,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -201,7 +218,9 @@ class _RequestScreenState extends State<RequestScreen> {
                               customTextField(
                                 "Location",
                                 locationTextController,
-                                icon: const Icon(Icons.location_on),
+                                icon: const Icon(
+                                  Icons.location_on,
+                                ),
                                 useIcon: true,
                               ),
                               customTextField(
@@ -211,24 +230,34 @@ class _RequestScreenState extends State<RequestScreen> {
                               SizedBox(
                                 height: 100,
                                 child: customTextField(
-                                    "Description", descriptionTextController),
+                                  "Description",
+                                  descriptionTextController,
+                                ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(15),
+                                padding: const EdgeInsets.all(
+                                  15,
+                                ),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text("Vaccinated (up to date)"),
+                                    const Text(
+                                      "Vaccinated (up to date)",
+                                    ),
                                     Checkbox(
                                       value: false,
-                                      onChanged: (value) {},
+                                      onChanged: (
+                                        value,
+                                      ) {},
                                     ),
                                   ],
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(
+                                  8.0,
+                                ),
                                 child: GestureDetector(
                                   onTap: () {},
                                   child: Container(
@@ -295,41 +324,52 @@ class _RequestScreenState extends State<RequestScreen> {
     );
   }
 
-  Widget customTextField(String hint, TextEditingController controller,
-      {Icon icon = const Icon(Icons.location_on), bool useIcon = false}) {
+  Widget customTextField(
+    String hint,
+    TextEditingController controller, {
+    Icon icon = const Icon(
+      Icons.location_on,
+    ),
+    bool useIcon = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.all(
         8.0,
       ),
       child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              15,
-            ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            15,
           ),
-          elevation: 5,
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-            ),
-            child: TextField(
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                suffixIcon: useIcon ? icon : null,
-                hintStyle: const TextStyle(
-                  fontSize: 13,
-                ),
-                hintText: hint,
-                border: InputBorder.none,
+        ),
+        elevation: 5,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+          ),
+          child: TextField(
+            onChanged: (
+              value,
+            ) {},
+            decoration: InputDecoration(
+              suffixIcon: useIcon ? icon : null,
+              hintStyle: const TextStyle(
+                fontSize: 13,
               ),
-              controller: controller,
+              hintText: hint,
+              border: InputBorder.none,
             ),
-          )),
+            controller: controller,
+          ),
+        ),
+      ),
     );
   }
 
-  Widget customDropDown(String hint) {
+  Widget customDropDown(
+    String hint,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(
         8.0,
@@ -354,13 +394,19 @@ class _RequestScreenState extends State<RequestScreen> {
               ),
             ),
             isExpanded: true,
-            onChanged: (String? newValue) {
+            onChanged: (
+              String? newValue,
+            ) {
               dropdownvalue = newValue;
             },
-            items: items.map((items) {
+            items: items.map((
+              items,
+            ) {
               return DropdownMenuItem(
                 value: items,
-                child: Text(items),
+                child: Text(
+                  items,
+                ),
               );
             }).toList(),
           ),
@@ -369,7 +415,9 @@ class _RequestScreenState extends State<RequestScreen> {
     );
   }
 
-  PreferredSize navBar(Size screenSize) {
+  PreferredSize navBar(
+    Size screenSize,
+  ) {
     return PreferredSize(
       preferredSize: Size(
         screenSize.width,
@@ -424,7 +472,9 @@ class _RequestScreenState extends State<RequestScreen> {
                                   _isHovering[0] ? Colors.white : Colors.white,
                             ),
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Visibility(
                             maintainAnimation: true,
                             maintainState: true,
@@ -440,7 +490,7 @@ class _RequestScreenState extends State<RequestScreen> {
                                 1,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -448,7 +498,9 @@ class _RequestScreenState extends State<RequestScreen> {
                       width: screenSize.width / 20,
                     ),
                     InkWell(
-                      onHover: (value) {
+                      onHover: (
+                        value,
+                      ) {
                         _isHovering[1] = value;
                       },
                       onTap: () {},
@@ -480,7 +532,7 @@ class _RequestScreenState extends State<RequestScreen> {
                                 1,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -488,7 +540,9 @@ class _RequestScreenState extends State<RequestScreen> {
                       width: screenSize.width / 20,
                     ),
                     InkWell(
-                      onHover: (value) {
+                      onHover: (
+                        value,
+                      ) {
                         _isHovering[2] = value;
                       },
                       onTap: () {},
@@ -502,7 +556,9 @@ class _RequestScreenState extends State<RequestScreen> {
                                   _isHovering[2] ? Colors.white : Colors.white,
                             ),
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Visibility(
                             maintainAnimation: true,
                             maintainState: true,
@@ -518,7 +574,7 @@ class _RequestScreenState extends State<RequestScreen> {
                                 1,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -558,7 +614,7 @@ class _RequestScreenState extends State<RequestScreen> {
                                 1,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),

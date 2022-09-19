@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:petology_web/Bloc/SignUp_Cubit/sign_up_cubit.dart';
-import 'package:petology_web/Bloc/SignUp_Cubit/sign_up_states.dart';
+import 'package:petology_web/Bloc/signUpCubit/signUpCubit.dart';
+import 'package:petology_web/Bloc/signUpCubit/signUpStates.dart';
 import 'package:petology_web/Constant/constant.dart';
 import 'package:petology_web/Widgets/footer.dart';
 import 'package:petology_web/Widgets/navBar.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -27,15 +31,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController countryController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+  Widget build(
+    BuildContext context,
+  ) {
+    Size screenSize = MediaQuery.of(
+      context,
+    ).size;
 
     return BlocProvider(
-      create: (BuildContext context) => SignUpCubit(),
+      create: (
+        BuildContext context,
+      ) =>
+          SignUpCubit(),
       child: BlocConsumer<SignUpCubit, SignUpStates>(
-        listener: (BuildContext context, Object? state) {},
+        listener: (
+          BuildContext context,
+          Object? state,
+        ) {},
         builder: (BuildContext context, state) {
-          SignUpCubit myCubit = SignUpCubit.get(context);
+          SignUpCubit myCubit = SignUpCubit.get(
+            context,
+          );
 
           return Scaffold(
             body: SingleChildScrollView(
@@ -280,7 +296,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget customTextField(TextEditingController controller, String hint) {
+  Widget customTextField(
+    TextEditingController controller,
+    String hint,
+  ) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(

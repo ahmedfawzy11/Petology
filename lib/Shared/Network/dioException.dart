@@ -1,10 +1,13 @@
+// ignore_for_file: file_names
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import 'custom_exception.dart';
+import 'package:petology_web/Shared/Network/customException.dart';
 
 class DioExceptions implements Exception {
-  DioExceptions.fromDioError(exception) {
+  DioExceptions.fromDioError(
+    exception,
+  ) {
     switch (exception.type) {
       case DioErrorType.cancel:
         errorType = CustomStatusCodeErrorType.internet;
@@ -25,9 +28,13 @@ class DioExceptions implements Exception {
         break;
       case DioErrorType.response:
         if (kDebugMode) {
-          print('code ${exception.response!.statusCode}');
+          print(
+            'code ${exception.response!.statusCode}',
+          );
         }
-        errorType = _handleErrorType(exception.response!.statusCode);
+        errorType = _handleErrorType(
+          exception.response!.statusCode,
+        );
         errorMassage = exception.response!.data["message"];
         break;
       case DioErrorType.sendTimeout:
@@ -42,7 +49,9 @@ class DioExceptions implements Exception {
   late CustomStatusCodeErrorType errorType;
   String errorMassage = "";
 
-  CustomStatusCodeErrorType _handleErrorType(int statusCode) {
+  CustomStatusCodeErrorType _handleErrorType(
+    int statusCode,
+  ) {
     switch (statusCode) {
       case 400:
         return CustomStatusCodeErrorType.badRequest;
@@ -50,12 +59,16 @@ class DioExceptions implements Exception {
         return CustomStatusCodeErrorType.unVerified;
       case 404:
         if (kDebugMode) {
-          print('code 404 done');
+          print(
+            'code 404 done',
+          );
         }
         return CustomStatusCodeErrorType.notFound;
       case 410:
         if (kDebugMode) {
-          print('code 404 done');
+          print(
+            'code 404 done',
+          );
         }
         return CustomStatusCodeErrorType.gone;
       case 500:

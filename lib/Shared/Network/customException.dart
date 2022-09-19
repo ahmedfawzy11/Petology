@@ -3,7 +3,11 @@ class CustomException implements Exception {
   String errorMassage;
   String imgPath;
 
-  CustomException(this.type, this.imgPath, {this.errorMassage = ""});
+  CustomException(
+    this.type,
+    this.imgPath, {
+    this.errorMassage = "",
+  });
 
   @override
   String toString() {

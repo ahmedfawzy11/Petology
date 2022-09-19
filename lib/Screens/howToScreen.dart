@@ -4,7 +4,11 @@ import 'package:petology_web/Widgets/navBar.dart';
 
 // ignore: must_be_immutable
 class HowToScreen extends StatefulWidget {
-  const HowToScreen({Key? key}) : super(key: key);
+  const HowToScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<HowToScreen> createState() => _HowToScreenState();
@@ -12,8 +16,12 @@ class HowToScreen extends StatefulWidget {
 
 class _HowToScreenState extends State<HowToScreen> {
   @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+  Widget build(
+    BuildContext context,
+  ) {
+    Size screenSize = MediaQuery.of(
+      context,
+    ).size;
 
     String title = "How do you feed your dog ?";
     String body = "How do you feed your dog ?"
@@ -58,7 +66,9 @@ class _HowToScreenState extends State<HowToScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomNavBar(isTransparent: true),
+                    CustomNavBar(
+                      isTransparent: true,
+                    ),
                     Image.asset(
                       "doghand.png",
                       width: 500,

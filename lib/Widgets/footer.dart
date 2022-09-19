@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomFooter extends StatefulWidget {
-  const CustomFooter({Key? key}) : super(key: key);
+  const CustomFooter({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<CustomFooter> createState() => _CustomFooterState();
@@ -9,8 +13,12 @@ class CustomFooter extends StatefulWidget {
 
 class _CustomFooterState extends State<CustomFooter> {
   @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+  Widget build(
+    BuildContext context,
+  ) {
+    Size screenSize = MediaQuery.of(
+      context,
+    ).size;
     return Container(
       height: 300,
       width: screenSize.width,

@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import 'custom_exception.dart';
-import 'dio_exception.dart';
+import 'package:petology_web/Shared/Network/customException.dart';
+import 'package:petology_web/Shared/Network/dioException.dart';
 
 class DioHelper {
   static late Dio dio;
@@ -19,7 +18,9 @@ class DioHelper {
         ),
       );
     } on DioError catch (exception) {
-      final errorMessage = DioExceptions.fromDioError(exception).errorType;
+      final errorMessage = DioExceptions.fromDioError(
+        exception,
+      ).errorType;
 
       throw CustomException(
         errorMessage,
@@ -33,9 +34,13 @@ class DioHelper {
     }
   }
 
-  static Future<Response> getDate({required String url}) async {
+  static Future<Response> getDate({
+    required String url,
+  }) async {
     try {
-      return await dio.get(url);
+      return await dio.get(
+        url,
+      );
     } on DioError catch (exception) {
       if (kDebugMode) {
         print(
@@ -48,8 +53,12 @@ class DioHelper {
           "here is the error from dio  ${exception.response!.data["message"]} ",
         );
       }
-      final errorType = DioExceptions.fromDioError(exception).errorType;
-      final errorMessage = DioExceptions.fromDioError(exception).errorMassage;
+      final errorType = DioExceptions.fromDioError(
+        exception,
+      ).errorType;
+      final errorMessage = DioExceptions.fromDioError(
+        exception,
+      ).errorMassage;
 
       throw CustomException(
         errorType,
@@ -64,13 +73,18 @@ class DioHelper {
     }
   }
 
-  static Future<Response> postData(
-      {required String url, required FormData data}) async {
+  static Future<Response> postData({
+    required String url,
+    required FormData data,
+  }) async {
     try {
       final response = await dio.post(
         url,
         data: data,
-        onSendProgress: (int sent, int total) {
+        onSendProgress: (
+          int sent,
+          int total,
+        ) {
           if (kDebugMode) {
             print(
               "$sent $total",
@@ -103,9 +117,13 @@ class DioHelper {
         );
       }
 
-      final errorType = DioExceptions.fromDioError(exception).errorType;
+      final errorType = DioExceptions.fromDioError(
+        exception,
+      ).errorType;
 
-      final errorMessage = DioExceptions.fromDioError(exception).errorMassage;
+      final errorMessage = DioExceptions.fromDioError(
+        exception,
+      ).errorMassage;
 
       throw CustomException(
         errorType,
